@@ -377,7 +377,7 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px dashed var(--border);
 }
 
-.oss-list a, .proj-list a {
+.oss-list a, .proj-list a, .proj-static {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -402,6 +402,8 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.8rem;
   margin-left: 6px;
 }
+
+.proj-static .proj-name::after { content: none; }
 
 .oss-meta {
   font-size: 0.82rem;
