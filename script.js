@@ -1,13 +1,7 @@
 (function () {
   var root = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
-
-  var saved = null;
-  try { saved = localStorage.getItem('theme'); } catch (e) { /* 隐私模式下不可用 */ }
-
-  if (saved === 'dark' || saved === 'light') {
-    root.setAttribute('data-theme', saved);
-  }
+  var repoCount = document.getElementById('public-repo-count');
 
   function currentTheme() {
     var attr = root.getAttribute('data-theme');
@@ -29,4 +23,23 @@
   });
 
   syncLabel();
+
+  if (repoCount && typeof fetch === 'function') {
+    fetch('https://api.github.com/users/AliceLJY', {
+      headers: { Accept: 'application/vnd.github+json' }
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error('GitHub API ' + response.status);
+        return response.json();
+      })
+      .then(function (profile) {
+        if (Number.isInteger(profile.public_repos) && profile.public_repos >= 0) {
+          repoCount.textContent = String(profile.public_repos);
+        }
+      })
+      .catch(function () {
+        repoCount.textContent = '—';
+        repoCount.title = 'GitHub 暂时未返回公开仓库数';
+      });
+  }
 })();
