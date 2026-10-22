@@ -27,7 +27,8 @@ test('public repository count is loaded dynamically', () => {
   assert.match(html, /id="public-repo-count"[^>]*>—<\/strong>/u);
   assert.doesNotMatch(html, /43 个公开仓库/u);
   assert.match(script, /api\.github\.com\/users\/AliceLJY/u);
-  assert.match(script, /profile\.public_repos/u);
+  assert.match(script, /users\/AliceLJY\/repos\?type=owner/u);
+  assert.match(script, /!r\.fork/u);
 });
 
 test('theme restoration only runs in the early inline script', () => {
