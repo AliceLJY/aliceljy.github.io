@@ -116,6 +116,7 @@ a { color: inherit; text-decoration: none; }
 .oss      { --accent: var(--c-purple); }
 .projects { --accent: var(--c-lime); }
 .mp       { --accent: var(--c-pink); }
+.notes    { --accent: var(--c-yellow); }
 
 .card-title {
   align-self: flex-start;
@@ -479,6 +480,7 @@ a { color: inherit; text-decoration: none; }
 /* 列数取能整除的：开源 6 项排 3 列，轮子 10 项排 5 列，每排都满 */
 .oss-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .proj-list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.notes .oss-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .oss-list li, .proj-list li { display: flex; }
 
@@ -632,6 +634,7 @@ a { color: inherit; text-decoration: none; }
 
   .right-col { gap: 18px; }
   .oss-list, .proj-list { grid-template-columns: 1fr; gap: 10px; }
+  .notes .oss-list { grid-template-columns: 1fr; }
 
   .banner {
     padding: 8px 8px 16px;
