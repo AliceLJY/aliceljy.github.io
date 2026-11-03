@@ -206,12 +206,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============ 主网格 ============ */
-/* 两栏等高：上排「我是谁 + 历程」一样高，下面的开源 / 轮子 / 公众号都是通栏，每排底边对齐 */
+/* 全部通栏、上下排：个人卡 → 历程 → 开源 → 轮子 → 学习笔记 → 公众号，每张卡内部再横向分栏 */
 .grid {
   display: grid;
-  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
-  align-items: stretch;
 }
 
 .right-col {
@@ -222,7 +221,19 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============ 个人卡片 ============ */
-.profile { text-align: left; display: flex; flex-direction: column; }
+/* 个人卡：头像 | 名字与介绍 | 座右铭与数据 */
+.profile {
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 0 34px;
+  align-items: start;
+}
+
+.profile-main .name { margin-top: 4px; }
+.profile-side { display: flex; flex-direction: column; }
+.profile-side .motto { margin-top: 0; }
+.profile-side .stats-note { margin-bottom: 18px; }
 
 .journey { display: flex; flex-direction: column; }
 
@@ -336,7 +347,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 .stats-note {
-  margin-bottom: 22px;
   margin-top: 10px;
   font-size: 0.72rem;
   color: var(--text-soft);
@@ -345,7 +355,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .btn-github {
-  margin-top: auto;
+  margin-top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,14 +377,20 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============ 时间线 ============ */
+/* 宽屏：六个阶段排成三列两行；窄屏退回竖排时间线 */
 .timeline {
   list-style: none;
   position: relative;
-  padding-left: 28px;
   margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 36px;
 }
 
+.timeline li { padding-bottom: 0 !important; }
+
 .timeline::before {
+  display: none;
   content: "";
   position: absolute;
   left: 7px;
@@ -387,6 +403,7 @@ a { color: inherit; text-decoration: none; }
 .timeline li {
   --dot: var(--c-blue);
   position: relative;
+  padding-left: 28px;
   padding-bottom: 24px;
 }
 
@@ -401,7 +418,7 @@ a { color: inherit; text-decoration: none; }
 .timeline li::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: 0;
   top: 6px;
   width: 16px;
   height: 16px;
@@ -615,16 +632,23 @@ a { color: inherit; text-decoration: none; }
 
 /* ============ 响应式 ============ */
 @media (max-width: 1080px) {
-  .grid {
-    grid-template-columns: minmax(270px, 320px) minmax(0, 1fr);
-  }
+  .profile { grid-template-columns: auto minmax(0, 1fr); }
+  .profile-side { grid-column: 1 / -1; margin-top: 20px; }
+  .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .oss-list, .proj-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 680px) {
   .page { padding: 12px 16px 4px; }
 
-  .grid { grid-template-columns: 1fr; gap: 18px; }
+  .grid { gap: 18px; }
+  .profile { grid-template-columns: 1fr; }
+  .profile-main .name { margin-top: 18px; }
+  .profile-side { margin-top: 18px; }
+  .timeline { grid-template-columns: 1fr; gap: 0; }
+  .timeline::before { display: block; }
+  .timeline li { padding-bottom: 22px !important; }
+  .timeline li:last-child { padding-bottom: 4px !important; }
 
   /* 手机端把公众号卡提到"我是谁"讲完的位置，别沉底 */
   .profile { order: 1; }
