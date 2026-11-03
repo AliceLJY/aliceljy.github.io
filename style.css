@@ -118,6 +118,7 @@ a { color: inherit; text-decoration: none; }
 .mp       { --accent: var(--c-pink); }
 
 .card-title {
+  align-self: flex-start;
   font-family: var(--font-hand);
   font-size: 1.3rem;
   font-weight: 800;
@@ -204,21 +205,25 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============ 主网格 ============ */
+/* 两栏等高：上排「我是谁 + 历程」一样高，下面的开源 / 轮子 / 公众号都是通栏，每排底边对齐 */
 .grid {
   display: grid;
-  grid-template-columns: minmax(300px, 350px) minmax(0, 1fr) minmax(320px, 390px);
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .right-col {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
 /* ============ 个人卡片 ============ */
-.profile { text-align: left; }
+.profile { text-align: left; display: flex; flex-direction: column; }
+
+.journey { display: flex; flex-direction: column; }
 
 .avatar {
   width: 132px;
@@ -330,6 +335,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .stats-note {
+  margin-bottom: 22px;
   margin-top: 10px;
   font-size: 0.72rem;
   color: var(--text-soft);
@@ -338,7 +344,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .btn-github {
-  margin-top: 22px;
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,6 +370,7 @@ a { color: inherit; text-decoration: none; }
   list-style: none;
   position: relative;
   padding-left: 28px;
+  margin-bottom: 22px;
 }
 
 .timeline::before {
@@ -443,7 +450,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 22px;
+  margin-top: auto;
   padding-top: 18px;
   border-top: 2.5px dashed color-mix(in srgb, var(--ink) 45%, transparent);
 }
@@ -462,24 +469,36 @@ a { color: inherit; text-decoration: none; }
 .tags span:nth-child(even) { transform: rotate(1.5deg); }
 
 /* ============ 开源 & 项目列表 ============ */
-.oss-list, .proj-list { list-style: none; }
-
-.oss-list li + li, .proj-list li + li {
-  border-top: 2px dashed color-mix(in srgb, var(--ink) 30%, transparent);
+/* 通栏小贴纸格子：同一行的格子自动等高 */
+.oss-list, .proj-list {
+  list-style: none;
+  display: grid;
+  gap: 14px;
 }
 
+/* 列数取能整除的：开源 6 项排 3 列，轮子 10 项排 5 列，每排都满 */
+.oss-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.proj-list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+.oss-list li, .proj-list li { display: flex; }
+
 .oss-list a, .proj-list a, .proj-static {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 11px 10px;
-  border-radius: 12px;
-  transition: background 0.2s ease, transform 0.2s ease;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 14px 11px 15px 12px;
+  background: var(--card-soft);
+  box-shadow: 3px 3px 0 var(--accent);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .oss-list a:hover, .proj-list a:hover {
-  background: color-mix(in srgb, var(--accent) 16%, transparent);
-  transform: translateX(3px);
+  background: color-mix(in srgb, var(--accent) 14%, var(--card-soft));
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--accent);
 }
 
 .oss-name, .proj-name {
@@ -595,14 +614,9 @@ a { color: inherit; text-decoration: none; }
 /* ============ 响应式 ============ */
 @media (max-width: 1080px) {
   .grid {
-    grid-template-columns: minmax(280px, 330px) minmax(0, 1fr);
+    grid-template-columns: minmax(270px, 320px) minmax(0, 1fr);
   }
-  .right-col {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
+  .oss-list, .proj-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 680px) {
@@ -616,10 +630,8 @@ a { color: inherit; text-decoration: none; }
   .mp { order: 3; }
   .right-col { order: 4; }
 
-  .right-col {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
+  .right-col { gap: 18px; }
+  .oss-list, .proj-list { grid-template-columns: 1fr; gap: 10px; }
 
   .banner {
     padding: 8px 8px 16px;
