@@ -657,12 +657,75 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-soft);
 }
 
+/* ============ 我做的那部分 ============ */
+.mypart { --accent: var(--c-pink); }
+
+.mypart-lead {
+  padding: 18px 22px;
+  border: 2px dashed var(--ink);
+  background: color-mix(in srgb, var(--c-yellow) 22%, var(--card));
+  border-radius: 16px 12px 18px 13px;
+  margin-bottom: 18px;
+}
+.lead-big {
+  font-family: var(--font-hand);
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+.lead-small {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  max-width: 60em;
+}
+
+.mypart-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.mypart-list li {
+  --tone: var(--c-pink);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px 16px;
+  border: 2px solid var(--ink);
+  border-radius: 14px 11px 15px 12px;
+  background: var(--card-soft);
+  box-shadow: 3px 3px 0 var(--tone);
+}
+.mypart-list li:nth-child(2) { --tone: var(--c-blue); }
+.mypart-list li:nth-child(3) { --tone: var(--c-lime); }
+.mypart-list li:nth-child(4) { --tone: var(--c-purple); }
+.mp-tag {
+  align-self: flex-start;
+  font-family: var(--font-hand);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 1px 9px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tone) 30%, var(--card));
+}
+.mypart-list h3 { font-size: 1.05rem; line-height: 1.35; }
+.mypart-list p { font-size: 0.88rem; color: var(--text-soft); flex: 1; }
+.mypart-list a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--tone) 75%, var(--text));
+}
+
+
 /* ============ 响应式 ============ */
 @media (max-width: 1080px) {
   .profile { grid-template-columns: auto minmax(0, 1fr); }
   .profile-side { grid-column: 1 / -1; margin-top: 20px; }
   .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .oss-list, .proj-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mypart-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 680px) {
@@ -679,6 +742,9 @@ a { color: inherit; text-decoration: none; }
 
   /* 手机端把公众号卡提到"我是谁"讲完的位置，别沉底 */
   .profile { order: 1; }
+  .mypart { order: 1; }
+  .mypart-list { grid-template-columns: 1fr; gap: 10px; }
+  .lead-big { font-size: 1.25rem; }
   .journey { order: 2; }
   .mp { order: 3; }
   .right-col { order: 4; }
