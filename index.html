@@ -32,7 +32,7 @@
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
     } catch (e) {}
   </script>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20261112" />
 
   <script type="application/ld+json">
   {
@@ -111,6 +111,39 @@
       </a>
       </div>
     </aside>
+
+    <!-- 我做的那部分（2026-11-12 预览：重心从「做过什么」挪到「我在里面做什么」） -->
+    <section class="card mypart">
+      <h2 class="card-title">和 AI 搭伙，我做的那部分</h2>
+      <blockquote class="mypart-lead">
+        <p class="lead-big">把临床思维，带进和 AI 的协作。</p>
+        <p class="lead-small">病人不会照着教科书生病，所以要多听、多感受、多问，经验是这样攒出来的。和 AI 搭伙也一样：做得对不对是一回事，起不起作用是另一回事。动手的是 AI，下面这些判断和取舍是我的。</p>
+      </blockquote>
+      <ul class="mypart-list">
+        <li>
+          <span class="mp-tag">看实际</span>
+          <h3>先问起不起作用</h3>
+          <p>AI 初审，只看代码改得对不对。我叫停，要它按「实际起不起作用」重审：刚修好的那段代码，实际运行时根本走不到；真正受影响的，是另一个项目。</p>
+        </li>
+        <li>
+          <span class="mp-tag">多问</span>
+          <h3>是不是绕路了？</h3>
+          <p>AI 做猫咪跳舞，死磕 3D 建模，怎么调都不像。我问：「是不是多此一举？它到底解决了什么？」路线换掉，改用代码逐格画，一只像素猫把舞跳了下来。</p>
+          <a href="https://www.youtube.com/shorts/sK72t6obZ2k" target="_blank" rel="noopener">看像素猫跳舞 ↗</a>
+        </li>
+        <li>
+          <span class="mp-tag">跨界</span>
+          <h3>把医学搬过来</h3>
+          <p>做 AI 记忆，我先去看人脑怎么记：海马体是索引，睡眠在整理，遗忘是主动的。我把研究理成做法，和 AI 一起做成 PR，提给参与的开源项目。做通信项目时，我又要求换个学科找参照。</p>
+          <a href="https://github.com/CortexReach/memory-lancedb-pro" target="_blank" rel="noopener">看参与的记忆项目 ↗</a>
+        </li>
+        <li>
+          <span class="mp-tag">用长处</span>
+          <h3>每个 AI 干它最擅长的</h3>
+          <p>同一件事，不让几个 AI 都干一样的。同一支猫咪舞的另一版：Codex 画关键帧，Grok 连成动作，Claude 统筹验收；平时审片交给 Muse。审方案也一样，各按所长分头看、互相挑错。两个 AI 意见一致也错过，所以最后一关，我亲手试。</p>
+        </li>
+      </ul>
+    </section>
 
     <!-- 中栏：探索历程 -->
     <section class="card journey">
@@ -201,7 +234,7 @@
 
       <!-- 自己造的轮子 -->
       <section class="card projects">
-        <h2 class="card-title">自己造的轮子</h2>
+        <h2 class="card-title">和 AI 一起做出来的</h2>
         <ul class="proj-list">
           <li>
             <a href="https://aliceljy.github.io/recallnest/" target="_blank" rel="noopener">
@@ -290,7 +323,7 @@
             </div>
           </li>
         </ul>
-        <p class="stats-note">数字截至 2026-11-03。这三样不是产品，是我的学习笔记。</p>
+        <p class="stats-note">数字截至 2026-11-03。读过的、借鉴过的都理在这里，上面那些东西是从这儿长出来的。</p>
       </section>
 
     </div>
