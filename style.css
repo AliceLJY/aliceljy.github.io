@@ -403,6 +403,35 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 6px 6px 0 var(--c-orange);
 }
 
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+.btn-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 11px 10px;
+  border-radius: 14px 11px 15px 12px;
+  border: 2.5px solid var(--ink);
+  background: color-mix(in srgb, var(--c-lime) 30%, var(--card));
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.88rem;
+  box-shadow: 4px 4px 0 var(--c-lime);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-play:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--c-lime); }
+.btn-office {
+  background: color-mix(in srgb, var(--c-blue) 22%, var(--card));
+  box-shadow: 4px 4px 0 var(--c-blue);
+}
+.btn-office:hover { box-shadow: 6px 6px 0 var(--c-blue); }
+@media (max-width: 680px) { .btn-row { grid-template-columns: 1fr; } }
+
 /* ============ 时间线 ============ */
 /* 宽屏：六个阶段排成三列两行；窄屏退回竖排时间线 */
 .timeline {
